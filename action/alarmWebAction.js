@@ -11,7 +11,7 @@ function main(params) {
     }
 
     var triggerParts = parseQName(params.triggerName);
-    var triggerID = `${params.authKey}/${triggerParts.namespace}/${triggerParts.name}`;
+    var triggerID = `${triggerParts.namespace}/${triggerParts.name}`;
 
     var triggerURL = `https://${params.apihost}/api/v1/namespaces/${triggerParts.namespace}/triggers/${triggerParts.name}`;
 
@@ -142,7 +142,7 @@ function updateTrigger(triggerDB, triggerID, retryCount) {
                 //legacy alarms triggers may have been created with _ namespace
                 if (retryCount === 0) {
                     var parts = triggerID.split('/');
-                    var id = parts[0] + '/_/' + parts[2];
+                    var id = '/_/' + parts[1];
                     updateTrigger(triggerDB, id, (retryCount + 1))
                     .then(id => {
                         resolve(id);
