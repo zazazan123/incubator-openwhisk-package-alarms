@@ -49,7 +49,7 @@ module.exports = function(logger, utils) {
 
         if (triggerName) {
             monitorStatus = Object.assign({}, utils.monitorStatus);
-            var existingID = `${apikey}/_/${triggerName}`;
+            var existingID = `/_/${triggerName}`;
 
             //delete trigger feed from database
             utils.sanitizer.deleteTriggerFromDB(existingID, 0);
@@ -72,7 +72,7 @@ module.exports = function(logger, utils) {
         triggerName = 'alarms_' + utils.worker + utils.host + '_' + Date.now();
 
         var triggerURL = utils.uriHost + '/api/v1/namespaces/_/triggers/' + triggerName;
-        var triggerID = `${apikey}/_/${triggerName}`;
+        var triggerID = `/_/${triggerName}`;
         healthMonitor.createTrigger(triggerURL, auth)
             .then((info) => {
                 logger.info(method, triggerID, info);
