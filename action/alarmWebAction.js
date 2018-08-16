@@ -14,7 +14,7 @@ function main(params) {
     }
 
     var triggerParts = common.parseQName(params.triggerName);
-    var triggerID = `${params.authKey}/${triggerParts.namespace}/${triggerParts.name}`;
+    var triggerID = `${triggerParts.namespace}/${triggerParts.name}`;
     var triggerURL = `https://${params.apihost}/api/v1/namespaces/${triggerParts.namespace}/triggers/${triggerParts.name}`;
 
     var workers = params.workers instanceof Array ? params.workers : [];
